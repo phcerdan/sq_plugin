@@ -11,6 +11,7 @@
 
 using namespace boost::python;
 using namespace boost::filesystem;
+using namespace std ;
 
 StructureFactor::StructureFactor(boost::shared_ptr<SystemDefinition> sysdef,
                                const std::vector<Scalar>& mode,
@@ -107,7 +108,7 @@ void StructureFactor::analyze(unsigned int timestep)
         if (is_root)
             {
             // write to output file
-            
+
             // write timestep
             m_file << setprecision(10) << timestep << m_delimiter;
 
@@ -130,7 +131,7 @@ void StructureFactor::analyze(unsigned int timestep)
             m_file << setprecision(10) << sq;
             m_file << std::endl;
             }
-        } 
+        }
 
     }
 
@@ -164,7 +165,7 @@ void StructureFactor::computeFourierModes(unsigned int timestep)
         {
         h_fourier_modes.data[k] = make_scalar2(0.0,0.0);
         Scalar3 q = h_wave_vectors.data[k];
-        
+
         for (unsigned int idx = 0; idx < m_pdata->getN(); idx++)
             {
             Scalar4 postype = h_postype.data[idx];
